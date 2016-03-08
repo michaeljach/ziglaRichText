@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
-<body ><!--onLoad="iFrameOn();"-->
+<!--
+<body >onLoad="iFrameOn();"
 <h2>My web application that intakes data from users</h2>
 <form action="my_parse_file.php" name="myform" id="myform" method="post">
 <p>Entry Title: <input name="title" id="title" type="text" size="80" maxlength="80" /></p>
@@ -22,33 +23,140 @@
   <input type="button" onClick="iUnLink()" value="UnLink">
   <input type="button" onClick="iImage()" class="1" value="Image">
 </div>
-<!-- Hide(but keep)your normal textarea and place in the iFrame replacement for it -->
+    
 <textarea style="display:none;" name="myTextArea" id="myTextAreaj" cols="100" rows="14"></textarea>
 <iframe name="richTextField" id="richTextField" style="border:#000000 1px solid; width:700px; height:300px;"></iframe>
-<!-- End replacing your normal textarea -->
+    
 </p>
 <br /><br /><input name="myBtn" type="button" value="Submit Data" onClick="javascript:submit_form();"/>
 </form>
+-->
 
-   <section class="test" style="height:50px; width :50px; background-color: purple;"></section>
-    
+   <section class="test" style="height:500px; width :800px; background-color: purple;"></section>
+   <section id="test" style="height:100px; width :500px; background-color: red;"></section>
+
+   
+   
+   
     <script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
-<!--    <script type="text/javascript" src="js/script.js"></script>-->
-    <script type="text/javascript" src="js/plugin.js"></script>
+    <script type="text/javascript" src="ziglaRichText/jquery.ziglaRichText-dev.js"></script>
     <script>
 //        test().init('selector #test');
 //        alert(ziglaRichText.test);
         ziglaRichText.init({
             selector : ".test",
-            height : "400",
-            toolbar : "undo",
-            lang : 'en'
+            height : "200px",
+            toolbar : "Bold",
         });
+    </script>
+    
+    <script>
+        
+        function iBold(){
+            richTextField.document.execCommand('bold',false,null); 
+        }
+        function iUnderline(){
+            richTextField.document.execCommand('underline',false,null);
+        }
+        function iItalic(){
+            richTextField.document.execCommand('italic',false,null); 
+        }
+        function iFontSize(){
+            var e = document.getElementById("FontSize");
+            var size = e.options[e.selectedIndex].value;
+            richTextField.document.execCommand('FontSize',false,size);
+        }
+        function iForeColor(){
+            var e = document.getElementById("FontColor");
+            var color = e.options[e.selectedIndex].value;
+            richTextField.document.execCommand('ForeColor',false,color);
+        }        
+        function iFontName(){
+            var e = document.getElementById("FontName");
+            var name = e.options[e.selectedIndex].value;
+            richTextField.document.execCommand('FontName',false,name)
+        }
+
+        function iCenter(){
+            richTextField.document.execCommand('justifyCenter',false,null);
+        }        
+        function iRight(){
+            richTextField.document.execCommand('justifyRight',false,null);
+        }
+        function iLeft(){
+            richTextField.document.execCommand('justifyLeft',false,null);
+        }
+        function iJustify(){
+            richTextField.document.execCommand('justifyFull',false,null);
+        }        
+
+
+        function iHorizontalRule(){
+            richTextField.document.execCommand('inserthorizontalrule',false,null);
+        }
+        function iUnorderedList(){
+            richTextField.document.execCommand("InsertOrderedList", false,"newOL");
+        }
+        function iOrderedList(){
+            richTextField.document.execCommand("InsertUnorderedList", false,"newUL");
+        }
+
+
+        function iLink(){
+            var linkURL = prompt("Enter the URL for this link:", "http://"); 
+            richTextField.document.execCommand("CreateLink", false, linkURL);
+        }
+        function iUnLink(){
+            richTextField.document.execCommand("Unlink", false, null);
+        }
+
+
+        function iIndent(){
+            richTextField.document.execCommand('Indent', false, null);
+        }
+        function iOutdent(){
+            richTextField.document.execCommand("Outdent", false, null);
+        }
+
+        
+        function iParagraph(){
+            richTextField.document.execCommand("InsertParagraph",false,"newP")
+        }
+        function iUndo(){
+            richTextField.document.execCommand("Undo",false,null);
+        }
+        function iRedo(){
+            richTextField.document.execCommand("Redo",false,null);
+        }
+        
+        
+        function iFormatBlock(){
+            var e = document.getElementById("FormatBlock");
+            var pre = e.options[e.selectedIndex].value;
+            richTextField.document.execCommand('FormatBlock',false, pre)
+        }
+        function iImage(){
+            var imgSrc = prompt('Enter image location', '');
+            if(imgSrc != null){
+                richTextField.document.execCommand('insertimage', false, imgSrc); 
+            }
+        }
+        
+        function submit_form(){
+            //nom du formulaire à définir
+            var theForm = document.getElementById("pageContent");
+            //nom du text area à définir
+            theForm.elements["pageCont"].value = window.frames['richTextField'].document.body.innerHTML;
+            theForm.submit();
+        }
     </script>
     
     <style>
         .h{
             color : red;
+        }
+        body{
+            font-family: openSans;
         }
     </style>
 </body>

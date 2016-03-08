@@ -1,0 +1,10 @@
+preferred_syntax = :sass
+http_path = '/'
+css_dir = 'ziglaRichText/themes/modern'
+sass_dir = 'ziglaRichText/themes/modern/sass'
+images_dir = 'web/images'
+fonts_dir = 'ziglaRichText/themes/modern/fonts'
+fonts_path = 'ziglaRichText/themes/modern/fonts'
+relative_assets = true
+line_comments = true
+# output_style = :compressed
