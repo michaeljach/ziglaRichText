@@ -62,30 +62,89 @@ var ziglaRichText = (function ($) {
         
        
         
+        //Récupère le nom de la fonctionnalitée --> Exemple bold
         var toolbar_item = (function (){
             var toolbar_parameters = parametres.toolbar.split(/(?: |\|)/g);
-//            for(var i = 0; i<toolbar_parameters.length ; i++){
-//                console.log('toolbar_parameters :' +toolbar_parameters[i]);
-//            }
+            for(var i = 0; i<toolbar_parameters.length ; i++){
+                console.log('toolbar_parameters :' +toolbar_parameters[i]);
+            }
             return toolbar_parameters;
         });
-        toolbar_item = toolbar_item();
+        toolbar_item = toolbar_item(); //Exemple de la donnée recupéré --> bold
+         
+
+        // Stocke les données du tableau JSON Icone dans un array
+        var JSON_arr_richTextEditor_img  = Object.keys(richTextEditor_img);
+
         
         var toolbar_items = "";
+        
+        //Parcour du tableau Toolbar function
         for(var i = 0; i<toolbar_item.length ; i++){
-            if(i == toolbar_item.length-1){
-                toolbar_items+='<button class="ziglaRichText_btn" type="button" onClick="i'+toolbar_item[i]+'()" title="'+toolbar_item[i]+'">\
-                                    <img src="'+currentScriptPath()+'themes/'+parametres.theme+'/icons/40x40/'+toolbar_item[i]+'.PNG" alt="icone '+toolbar_item[i]+'">\
-                                </button>'; 
-//                toolbar_items+=toolbar_item[i]; 
-            }else{
-                toolbar_items+='<button class="ziglaRichText_btn" type="button" onClick="i'+toolbar_item[i]+'()" title="'+toolbar_item[i]+'">\
-                                    <img src="'+currentScriptPath()+'themes/'+parametres.theme+'/icons/40x40/'+toolbar_item[i]+'.PNG" alt="icone '+toolbar_item[i]+'">\
-                                </button>'+' ';  
-            }
+            
+            //Parcour du tableau JSON Icone
+            for(var y = 0 ; y < JSON_arr_richTextEditor_img.length ; y++){
+                
+                if(toolbar_item[i] == JSON_arr_richTextEditor_img[y]){
+                    //Si le nom du button Toolbar est égal à celui du JSON Icone    
+                    //Correlation établie
+                                        
+                    //Selecteur donnée JSON 
+                    //Selecteur donnée JSON 
+                    //Selecteur donnée JSON 
+                    var selector =  richTextEditor_img[JSON_arr_richTextEditor_img[y]];
+//                    console.log(selector.type);
+                    //Selecteur donnée JSON 
+                    //Selecteur donnée JSON 
+                    //Selecteur donnée JSON 
+                    
+                    
+                    if(selector.type == "button"){//Si la fonction est un bouton --> Bold = button
+                        
+                       if(i == toolbar_item.length-1){
+                           toolbar_items+='\
+                            <button class="ziglaRichText_btn '+selector.class+'" id="'+selector.id+'" type="button" onClick="'+selector.function+'" title="'+selector.title+'">\
+                            <img src="'+currentScriptPath()+selector.icon_src+'" alt="'+selector.icon_alt+'">\
+                            </button>'; 
+                       }else{
+                           toolbar_items+='\
+                            <button class="ziglaRichText_btn '+selector.class+'" id="'+selector.id+'" type="button" onClick="'+selector.function+'" title="'+selector.title+'">\
+                            <img src="'+currentScriptPath()+selector.icon_src+'" alt="'+selector.icon_alt+'">\
+                            </button>'+' ';  
+                       }
+                        
+                    }else if(selector.type == "list"){//Si la fonction est une liste  --> sizeText = list
+                        
+                        var options_list="";
+                        for(var i = 0; i<selector.data_list.length; i++){
+                            options_list+='<option value="'+selector.data_list[i]+'">'+selector.data_list[i]+'</option>';
+                        }
+                        
+                        
+                        if(i == toolbar_item.length-1){
+                           toolbar_items+='\
+                            <select class="ziglaRichText_list '+selector.class+'" id="'+selector.id+'" onChange="'+selector.function+'" title="'+selector.title+'">\
+                              <option selected="selected" value="'+selector.title+'">'+selector.description+'</option>'+ options_list+'\
+                            </select>'
+                            ;
+                            
+                       }else{
+                           toolbar_items+='\
+                            <select class="ziglaRichText_list '+selector.class+'" id="'+selector.id+'" onChange="'+selector.function+'" title="'+selector.title+'">\
+                              <option selected="selected" value="'+selector.title+'">'+selector.description+'</option>'+ options_list+'\
+                            </select>'+' ';  
+                       }
+                    }
+                    
+                    
+                    break;//Stope la boucle
+                }
+                
+            }  
         }
         
-                        
+    
+        
                 
         
         selector_html.append('\

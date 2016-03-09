@@ -1242,7 +1242,12 @@ button.big-btn {
   height: 100%;
   width: 100%;
 }
-/* line 808, sass/modern.scss */
+/* line 802, sass/modern.scss */
+.pc-properties-panel-body-wysiwyg .pc-properties-panel-body-wysiwyg-options-text .ziglaRichText_list {
+  position: relative;
+  display: inline-block;
+}
+/* line 813, sass/modern.scss */
 .pc-properties-panel-body-wysiwyg .pc-properties-panel-body-wysiwyg-indicator-baslise-text {
   position: relative;
   display: block;
@@ -1253,7 +1258,7 @@ button.big-btn {
   border: 1px solid #e5e5e5;
 }
 
-/* line 824, sass/modern.scss */
+/* line 829, sass/modern.scss */
 .pc-properties-panel-body-wysiwyg-text-editable-content {
   position: relative;
   display: block;
@@ -1263,7 +1268,7 @@ button.big-btn {
   border-bottom: 0;
 }
 
-/* line 832, sass/modern.scss */
+/* line 837, sass/modern.scss */
 .pc-properties-panel-body-wysiwyg-text-editable-content-body {
   position: relative;
   display: block;

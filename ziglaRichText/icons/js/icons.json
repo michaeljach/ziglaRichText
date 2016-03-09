@@ -1,0 +1,39 @@
+/**
+* Data's icons of ziglaRichText
+* Use this file as the following 
+*
+    var richTextEditor_img = {
+		"name_function": {
+            "type": "button", (button or list)
+            "src": "/example/path",
+            "nameOfIcon": "exampleName.png"
+		}
+	}
+*/
+
+var richTextEditor_img = {
+    "Bold": {
+        "type": "button",
+        "class" :"",
+        "id":"",
+        "function" : "iBold()",
+        "title" : "Bold",
+        "data_list" : ["1", "2", "e"],
+        "data_list_class" : "",
+        "description" : "Bold caracter",
+        "icon_alt" : "Icone Bold",
+        "icon_src": "themes/modern/icons/open-iconic-master/png/bold-2x.png",
+    },
+    "FontSize": {
+        "type": "list",
+        "class" :"",
+        "id":"FontSize",
+        "function" : "iFontSize()",
+        "title" : "Font size",
+        "data_list" : ["10", "15", "20"],
+        "description" : "Font size function",
+        "icon_alt" : "Icone font size",
+        "icon_src": "themes/modern/icons/open-iconic-master/png/text-2x.png",
+    },
+}
+    
